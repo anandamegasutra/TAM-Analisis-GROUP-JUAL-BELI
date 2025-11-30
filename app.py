@@ -368,7 +368,7 @@ elif menu == "Lihat Hasil (Admin)":
                     R_TABLE_FOR_DISPLAY = "0.3 (Umum)"
                     R_TABLE_FOR_COMPARE = 0.3 # Gunakan 0.3 sebagai batas default jika N kecil
                 else:
-                    R_TABLE_FOR_DISPLAY = f"{R_TABLE_005:.3f}"
+                    R_TABLE_FOR_DISPLAY = f"{R_TABLE_005:0.3f}"
                     R_TABLE_FOR_COMPARE = R_TABLE_005
                     
                 st.write(f"Item dianggap **valid** jika nilai 'r-hitung' (korelasi) lebih besar dari 'r-tabel' (**{R_TABLE_FOR_DISPLAY}**).")
@@ -594,3 +594,4 @@ elif menu == "Lihat Hasil (Admin)":
         st.error(f"❌ Terjadi error besar saat memproses analisis: {e}")
 
         st.error("Pastikan data yang di-upload memiliki format kolom yang sama (PU_1, PU_2, PEOU_1, dst.) dengan data kuesioner.")
+
