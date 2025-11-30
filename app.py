@@ -395,7 +395,7 @@ elif menu == "Lihat Hasil (Admin)":
                                 status = "Valid" if correlation > R_TABLE_FOR_COMPARE else "Tidak Valid"
                                 validity_results.append({
                                     "Variabel": indicator, "Item": item_col,
-                                    "r-hitung (Correlation)": f"{correlation:.3f}",
+                                    "r-hitung (Correlation)": f"{correlation:0.3f}",
                                     "r-tabel": R_TABLE_FOR_DISPLAY, # <--- Kolom r-tabel
                                     "Keterangan": status
                                 })
@@ -486,10 +486,8 @@ elif menu == "Lihat Hasil (Admin)":
                     
                     # Konversi p-value ke numerik dan tambahkan kolom Keterangan (PERBAIKAN)
                     structural_estimates.loc[:, 'p-value'] = pd.to_numeric(structural_estimates['p-value'], errors='coerce')
-                    structural_estimates.loc[:, 'Keterangan'] = np.where(structural_estimates['p-value'] <= 0.05, 
-                                                                         "Terdukung", 
-                                                                         "Tidak Terdukung")
-                    
+                    structural_estimates.loc[:, 'Keterangan'] = np.where(structural_estimates['p-value'] <= 0.05, "Terdukung", "Tidak Terdukung")
+                                                                    
                     structural_estimates.index = np.arange(1, len(structural_estimates) + 1)
                     st.table(structural_estimates) # <--- Tampilkan tabel dengan kolom Keterangan p-value
 
@@ -594,4 +592,5 @@ elif menu == "Lihat Hasil (Admin)":
     
     except Exception as e:
         st.error(f"❌ Terjadi error besar saat memproses analisis: {e}")
+
         st.error("Pastikan data yang di-upload memiliki format kolom yang sama (PU_1, PU_2, PEOU_1, dst.) dengan data kuesioner.")
